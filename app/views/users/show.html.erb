@@ -1,0 +1,23 @@
+<h3>Blogs</h3>
+<table>
+  <thead>
+    <tr>
+      <td>Title</td>
+      <td>Text</td>
+    </tr>
+  </thead>
+  <tbody>
+    <% @post_blogs.each do |blog| %>
+      <tr>
+        <td>
+          <%= link_to post_blog_path(blog.id) do %>
+            <%= blog.title %>
+          <% end %>
+        </td>
+        <td>
+          <%= blog.body.truncate(15) %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
