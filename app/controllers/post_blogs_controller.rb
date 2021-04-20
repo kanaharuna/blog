@@ -1,5 +1,6 @@
 class PostBlogsController < ApplicationController
   def index
+    @post_blogs = PostBlog.all
   end
 
   def show
@@ -18,12 +19,22 @@ class PostBlogsController < ApplicationController
   end
 
   def edit
+    @post_blog = PostBlog.find(params[:id])
+    if @post_blog.user.id != current_user.id
+      redirect_to post_blogs_path
+    end
   end
 
   def update
+    @post_blog = PostBlog.find(params[:id])
+    @post_blog.update(post_blog_params)
+    redirect_to post_blog_path(@post_blog.id)
   end
 
   def destroy
+    blog = PostBlog.find(params[:id])
+    blog.destroy
+    redirect_to post_blogs_path
   end
 
   private

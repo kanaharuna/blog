@@ -1,14 +1,19 @@
-<h3>Blogs</h3>
+<h2><%= @user.name %> Blogs</h2>
 <table>
   <thead>
     <tr>
-      <td>Title</td>
-      <td>Text</td>
+      <th></th>
+      <th>Title</th>
+      <th>Text</td>
+      <th colspan="3"></th>
     </tr>
   </thead>
   <tbody>
     <% @post_blogs.each do |blog| %>
       <tr>
+        <td>
+          <%= attachment_image_tag blog.user,:profile_image,format:"jpeg",fallback:"no_image.jpg",size:"40x40" %>
+        </td>
         <td>
           <%= link_to post_blog_path(blog.id) do %>
             <%= blog.title %>
@@ -21,3 +26,4 @@
     <% end %>
   </tbody>
 </table>
+<%= render 'users/user_info',user:@user %>
